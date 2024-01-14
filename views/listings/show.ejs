@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust</title>
+</head>
+<body>
+    <div class="contener">
+        <h3>Listing</h3>
+        <hr>
+        <a href="/listings/<%=listing._id%>/edit">Edit Listing</a>
+        <br><br>
+        <form action="/listings/<%=listing._id%>?_method=DELETE" method="post">
+            <button>Delete Listing</button>
+        </form>
+        <hr>
+        <p>Title: <%= listing.title %></p>
+        <p>Description: <%= listing.description %></p>
+        <img src="<%=listing.image.url %>" alt="<%=listing.image.filename %>">
+        <p>Price: &#8377; <%= listing.price %></p>
+        <p>Location <%= listing.location %></p>
+        <p>Country: <%= listing.country %></p>
+    </div>
+</body>
+</html>
