@@ -6,7 +6,31 @@
 .nav-link{
     color: #222222 !important;
 }
+
 .fa-compass{
     color: #fe424d;
     font-size: 2rem;
+}
+.f-links a{
+    text-decoration: none;
+    color: white;
+}
+
+.f-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info{
+    background-color: #222222;
+    color: white;
+    height: 7rem;
+    text-align: center;
+    padding-top: 1.3rem;
+}
+
+.f-socials{
+    font-size: 1.2rem;
+}
+.f-socials i{
+    margin: 0rem 0.4rem;
 }
