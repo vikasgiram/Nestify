@@ -32,5 +32,12 @@
     font-size: 1.2rem;
 }
 .f-socials i{
+    opacity: 0.7;
+}
+.f-socials i:hover{
+    scale: 1.2;
+    opacity: 1;
+}
+.f-socials i{
     margin: 0rem 0.4rem;
 }
