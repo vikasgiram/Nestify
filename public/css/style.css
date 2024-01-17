@@ -93,4 +93,20 @@ body{
 .add-btn{
     background-color: #fe424d !important;
     border: none !important;
+    color: white !important;
+}
+
+
+/* show page */
+
+.card-img-top{
+    height: 50vh;
+}
+.btns{
+    display: flex;
+    justify-content: center;
+}
+
+.edit{
+    padding-right: 1rem;
 }
