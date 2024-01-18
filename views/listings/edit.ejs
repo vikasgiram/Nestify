@@ -6,40 +6,51 @@
             
             <div class="col-8 offset-2 mb-3 mt-3">
                 <h3>Edit Listing</h3>
-                <form action="/listings/<%=listing._id%>?_method=PUT" method="post">
+                <form action="/listings/<%=listing._id%>?_method=PUT" method="post" novalidate class="needs-validation">
              
                     <div class="mb-3 mt-4">
                         <label for="title" class="form-label">Title</label>
-                        <input class="form-control" type="text" id="title" name="Listing[title]" value="<%= listing.title %>">
+                        <input class="form-control" required type="text" id="title" name="Listing[title]" value="<%= listing.title %>">
+                        <div class="valid-feedback">Titile Looks Good!</div>
+                        <div class="invalid-feedback">Title should be required</div>
                     </div>
              
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <input class="form-control" type="text" id="description" name="Listing[description]" value="<%= listing.description %>">
+                        <input class="form-control" required type="text" id="description" name="Listing[description]" value="<%= listing.description %>">
+                        <div class="valid-feedback">Description Looks Good!</div>
+                        <div class="invalid-feedback">Description should be required</div>
                     </div>
              
                     <div class="mb-3">
                         <label for="image" class="form-label">Image URL</label>
-                        <input class="form-control" type="text" id="image.url" name="Listing[image{url}]" value="<%= listing.image.url %>">
+                        <input class="form-control" required type="text" id="image.url" name="Listing[image{url}]" value="<%= listing.image.url %>">
+                        <div class="valid-feedback">Link Looks Good!</div>
+                        <div class="invalid-feedback">Img Link should be required</div>
                     </div>
                 
                     <div class="row" >
                         <div class="mb-3 col-12 col-sm-12 col-md-4 col-lg-4">
                             <label for="price" class="form-label">Price</label>
-                            <input type="number" name="Listing[price]" id="price" class="form-control" value="<%=listing.price%>">
-                            
+                            <input type="number" required name="Listing[price]" id="price" class="form-control" value="<%=listing.price%>">
+                            <div class="valid-feedback">Price Looks Good!</div>
+                            <div class="invalid-feedback">Price should be required</div>
                         </div>
 
                         <div class="mb-3 col-12 col-sm-12 col-md-8 col-lg-8">
                             <label for="country" class="form-label">Country</label>
-                            <input class="form-control" type="text" id="country" name="Listing[country]" value="<%= listing.country %>">
+                            <input class="form-control" required type="text" id="country" name="Listing[country]" value="<%= listing.country %>">
+                            <div class="valid-feedback">Country Looks Good!</div>
+                            <div class="invalid-feedback">Country should be required</div>
                         </div>
     
                     </div>
                 
                     <div class="mb-3">
                         <label for="location:" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="location" name="Listing[location]" value="<%= listing.location %>">
+                        <input type="text" required class="form-control" id="location" name="Listing[location]" value="<%= listing.location %>">
+                        <div class="valid-feedback">Location Looks Good!</div>
+                        <div class="invalid-feedback">Location should be required</div>
                     </div>
                 
                     <button class="btn btn-dark mb-3 add-btn">Edit</button>
