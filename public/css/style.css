@@ -110,3 +110,14 @@ body{
 .edit{
     padding-right: 1rem;
 }
+
+
+/* error  */
+
+.alert-heading{
+    display: flex;
+    
+}
+.fa-solid{
+    padding: 0.3rem;
+}
