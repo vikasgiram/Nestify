@@ -48,10 +48,10 @@ const validateListing=(req,res,next)=>{
 }
 
 // Main All Listing Route
-app.get("/listings",wrapAsync(async (req,res,next)=>{
+app.get("/listings",async (req,res)=>{
     const listings=await Listing.find({});
     res.render("listings/index.ejs",{listings});
-}));
+});
 
 // New Listing Route
 app.get("/listings/new",(req,res)=>{
@@ -82,18 +82,18 @@ app.put("/listings/:id",validateListing,wrapAsync(async (req,res,next)=>{
 }));
 
 // Show Route
-app.get("/listings/:id",wrapAsync(async (req,res,next)=>{
+app.get("/listings/:id",async (req,res)=>{
     let { id }=req.params;
     let listing=await Listing.findById(id);
     res.render("listings/show.ejs",{listing});
-}));
+});
 
 // Edit Route
-app.get("/listings/:id/edit",wrapAsync(async (req,res,next)=>{
+app.get("/listings/:id/edit",async (req,res)=>{
     let {id}=req.params;
     let listing=await Listing.findById(id);
     res.render("listings/edit.ejs",{listing})
-}));
+});
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"Page not Found!!!"));
@@ -109,3 +109,4 @@ app.use((err,req,res,next)=>{
 app.listen(8080,()=>{
     console.log("Server is listening on port 8080");
 });
+
