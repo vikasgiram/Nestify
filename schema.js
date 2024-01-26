@@ -1,6 +1,6 @@
 const Joi=require("joi");
 
-module.exports=Joi.object({
+const listingSchema=Joi.object({
     Listing: Joi.object({
         title: Joi.string().required(),
         description: Joi.string().required(),
@@ -9,3 +9,14 @@ module.exports=Joi.object({
         country: Joi.string().required(),
     }).required().unknown(true)
 });
+
+
+const reviewSchema=Joi.object({
+    review: Joi.object({
+        rating: Joi.number().min(0).max(5).required(),
+        comment: Joi.string().required(),
+        date: Joi.date().optional()
+    }).required()
+});
+
+module.exports={listingSchema,reviewSchema};
