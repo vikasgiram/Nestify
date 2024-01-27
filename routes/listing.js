@@ -28,7 +28,7 @@ router.get("/",async (req,res)=>{
     res.render("listings/index.ejs",{listings});
 });
 
-// New Listing Route
+//get route for New Listing 
 router.get("/new",(req,res)=>{
     res.render("listings/new.ejs");
 });
@@ -36,31 +36,39 @@ router.get("/new",(req,res)=>{
 // Show Route
 router.get("/:id",async (req,res)=>{
     let { id }=req.params;
-    let listing=await Listing.findById(id).populate("reviews");
+    const listing=await Listing.findById(id).populate("reviews");
+    if(!listing){
+        console.log("Listing not found");
+        console.log(listing);
+        req.flash("error","Listing you requested for does not exits!");
+        res.redirect("/listings");  
+    }
     res.render("listings/show.ejs",{listing});
 });
 
-// Post Route for save changes in DB
+// Post Route for new Listing changes in DB
 router.post("/",validateListing,wrapAsync(async (req,res,next)=>{
     let listing= new Listing(req.body.Listing);
     await listing.save();   
-    res.redirect("listings/");
+    req.flash("success","New Listing Created!");
+    res.redirect("/listings");
 }));
 
 // Delete Route
 router.delete("/:id",wrapAsync(async (req,res,next)=>{
     let { id }=req.params;
     await Listing.findByIdAndDelete(id);
-    res.redirect("listings/");
+    req.flash("success","Listing Deleted Sucessfully");
+    res.redirect("/listings");
 }));
 
 
 // Update Route
 router.put("/:id",validateListing,wrapAsync(async (req,res,next)=>{
-
     let { id }=req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.Listing});
-    res.redirect(`listings/${id}`);
+    req.flash("success","Listing Updated!");
+    res.redirect(`/listings/${id}`);
 }));
 
 
@@ -69,6 +77,10 @@ router.put("/:id",validateListing,wrapAsync(async (req,res,next)=>{
 router.get("/:id/edit",async (req,res)=>{
     let {id}=req.params;
     let listing=await Listing.findById(id);
+    if(!listing){
+        req.flash("error","Listing you requested for does not exits!");
+        res.redirect("/listings");
+    }
     res.render("listings/edit.ejs",{listing})
 });
 

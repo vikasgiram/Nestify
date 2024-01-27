@@ -6,6 +6,8 @@ const path=require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const ExpressError=require("./utils/ExpressError.js");
+const session=require("express-session");
+const flash=require("connect-flash");
 
 const listings=require("./routes/listing.js");
 const review=require("./routes/review.js");
@@ -30,26 +32,39 @@ app.use(methodOverride("_method"));
 
 app.engine("ejs", ejsMate);
 
+const sessionOptions={
+    secret: "mysupersecretkey",
+    resave: false,
+    saveUninitialized: true,
+};
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    next();
+});
+
+app.use("/listings",listings)
+app.use("/listings/:id/review",review);
 
 // Root Route
 app.get("/",(req,res)=>{
     res.send("I am Root");
 });
 
-
-app.use("/listings",listings)
-app.use("/listings/:id/review",review);
-
-
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"Page not Found!!!"));
 })
 
 app.use((err,req,res,next)=>{
-    console.log(err);
     let {statusCode=500,msg="Something went Wrong!"}=err;
     res.status(statusCode).render("listings/error.ejs",{msg});
+    next();
 });
+
 
 
 //establish Server Connection
