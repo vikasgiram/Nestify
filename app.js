@@ -39,6 +39,11 @@ const sessionOptions={
     secret: "mysupersecretkey",
     resave: false,
     saveUninitialized: true,
+    cookie:{
+        expries: Date.now()+7*24*60*60*1000,
+        maxAge: 7*24*60*60*1000
+
+    }
 };
 
 app.use(session(sessionOptions));
@@ -73,6 +78,7 @@ app.all("*",(req,res,next)=>{
 })
 
 app.use((err,req,res,next)=>{
+    console.log(err);
     let {statusCode=500,msg="Something went Wrong!"}=err;
     res.status(statusCode).render("listings/error.ejs",{msg});
     next();
