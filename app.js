@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require("dotenv").config();
+}
+
 // Required Necessory Packages
 const express=require("express");
 const app=express();
@@ -15,6 +19,8 @@ const User=require("./models/user.js");
 const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
+
+
 // Connecte to DB
 main().then(()=>{
     console.log("Connected to DB Sucess");
