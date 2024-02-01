@@ -40,7 +40,12 @@ module.exports.destroyListing=async (req,res,next)=>{
 
 module.exports.updateListing=async (req,res,next)=>{
     let { id }=req.params;
-    await Listing.findByIdAndUpdate(id,{...req.body.Listing});
+    let listing=await Listing.findByIdAndUpdate(id,{...req.body.Listing});
+    if(typeof req.file!=="undefined"){
+        listing.image.url=req.file.path;
+        listing.image.filename=req.file.filename;
+        await listing.save();
+    }
     req.flash("success","Listing Updated!");
     res.redirect(`/listings/${id}`);
 };
