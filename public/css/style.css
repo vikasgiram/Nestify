@@ -4,9 +4,7 @@ body{
     flex-direction: column;
     min-height: 100vh;
 }
-.container{
-    flex: 1;
-}
+
 
 /* navbar */
 .navbar{
@@ -21,6 +19,28 @@ body{
 .fa-compass{
     color: #fe424d;
     font-size: 2rem;
+}
+
+/* Nav Search box */
+.search{
+    position: relative;
+    left: 30%;
+}
+
+.search-btn i{
+    font-size: 1.5rem !important;
+    padding: 0rem 0.5rem 0rem 0.5rem !important;
+}
+
+.search-inp{
+    border-radius: 4rem !important;
+    padding: 0.5rem 3rem !important;
+}
+
+.search-btn{
+    background-color: #fe424d !important;
+    color: white !important;
+    border-radius: 3rem !important;
 }
 
 /* footer */
