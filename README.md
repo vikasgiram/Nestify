@@ -1,7 +1,5 @@
 # WanderLust
 
-this project is devloped by vikas giram if you have any query releted to this project please contact on : 8208481462
-
 Wanderlust is a comprehensive housing platform designed to simplify the process of finding suitable and budget-friendly accommodation for students and working professionals relocating to new cities. Whether you're searching for an apartment, room, bungalow, or house, Wanderlust provides a centralized platform to explore various options and connect with flat owners directly.
 
 Key Features:
